@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: Dodo
@@ -18,10 +18,10 @@ dataSources:
         - Transfer
       abis:
         - name: Dodo
-          file: ./abis/Dodo.json
+          file: Dodo\abis\Dodo.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/dodo.ts
+      file: Dodo\Dodo.wasm
