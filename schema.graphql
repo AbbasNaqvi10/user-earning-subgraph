@@ -18,6 +18,19 @@ type Transfer @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
+type User @entity {
+id: Bytes!
+earn: [Earn!]!
+}
+
+type Earn @entity {
+id: Bytes!
+totalDeposite: BigInt!
+totalWithdraw: BigInt!
+blockTimestamp: BigInt!
+blockNumber: BigInt!
+}
+
 type Deposit @entity {
   id: Bytes!
   from: Bytes! # address

@@ -183,6 +183,115 @@ export class Transfer extends Entity {
   }
 }
 
+export class User extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save User entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type User must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("User", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): User | null {
+    return changetype<User | null>(store.get("User", id.toHexString()));
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get earn(): Array<Bytes> {
+    let value = this.get("earn");
+    return value!.toBytesArray();
+  }
+
+  set earn(value: Array<Bytes>) {
+    this.set("earn", Value.fromBytesArray(value));
+  }
+}
+
+export class Earn extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Earn entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type Earn must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("Earn", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): Earn | null {
+    return changetype<Earn | null>(store.get("Earn", id.toHexString()));
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get totalDeposite(): BigInt {
+    let value = this.get("totalDeposite");
+    return value!.toBigInt();
+  }
+
+  set totalDeposite(value: BigInt) {
+    this.set("totalDeposite", Value.fromBigInt(value));
+  }
+
+  get totalWithdraw(): BigInt {
+    let value = this.get("totalWithdraw");
+    return value!.toBigInt();
+  }
+
+  set totalWithdraw(value: BigInt) {
+    this.set("totalWithdraw", Value.fromBigInt(value));
+  }
+
+  get blockTimestamp(): BigInt {
+    let value = this.get("blockTimestamp");
+    return value!.toBigInt();
+  }
+
+  set blockTimestamp(value: BigInt) {
+    this.set("blockTimestamp", Value.fromBigInt(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value!.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
+}
+
 export class Deposit extends Entity {
   constructor(id: Bytes) {
     super();
