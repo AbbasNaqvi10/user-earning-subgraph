@@ -2,13 +2,36 @@ specVersion: 0.0.5
 schema:
   file: ./schema.graphql
 dataSources:
+  # - kind: ethereum
+  #   name: Weth_Dai
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0xF73e52e7185dDE30eC58336bc186f392354bF784"
+  #     abi: Weth_Dai
+  #     startBlock: 54283461
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Weth_Dai
+  #         file: ./abis/Weth_Dai.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #     file: ./src/index.ts
   - kind: ethereum
-    name: Dodo
+    name: Weth_Usdc
     network: arbitrum-one
     source:
-      address: "0xF73e52e7185dDE30eC58336bc186f392354bF784"
-      abi: Dodo
-      startBlock: 21283461
+      address: "0x46910A4AbA500b71F213150A0E99201Fd5c8FCec"
+      abi: Weth_Usdc
+      startBlock: 68319838
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -17,11 +40,15 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Dodo
-          file: ./abis/Dodo.json
+        - name: Weth_Usdc
+          file: ./abis/Weth_Usdc.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/dodo.ts
+        - event: Deposit(indexed address,uint256,uint256,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,uint256,uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/index.ts
