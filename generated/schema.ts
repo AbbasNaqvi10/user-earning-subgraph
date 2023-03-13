@@ -214,6 +214,24 @@ export class User extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get deposit(): Array<Bytes> {
+    let value = this.get("deposit");
+    return value!.toBytesArray();
+  }
+
+  set deposit(value: Array<Bytes>) {
+    this.set("deposit", Value.fromBytesArray(value));
+  }
+
+  get withdraw(): Array<Bytes> {
+    let value = this.get("withdraw");
+    return value!.toBytesArray();
+  }
+
+  set withdraw(value: Array<Bytes>) {
+    this.set("withdraw", Value.fromBytesArray(value));
+  }
+
   get earn(): Array<Bytes> {
     let value = this.get("earn");
     return value!.toBytesArray();
@@ -274,6 +292,200 @@ export class Earn extends Entity {
   }
 }
 
+export class userDeposit extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save userDeposit entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type userDeposit must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("userDeposit", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): userDeposit | null {
+    return changetype<userDeposit | null>(
+      store.get("userDeposit", id.toHexString())
+    );
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get tokenId(): BigInt {
+    let value = this.get("tokenId");
+    return value!.toBigInt();
+  }
+
+  set tokenId(value: BigInt) {
+    this.set("tokenId", Value.fromBigInt(value));
+  }
+
+  get tokenName(): string {
+    let value = this.get("tokenName");
+    return value!.toString();
+  }
+
+  set tokenName(value: string) {
+    this.set("tokenName", Value.fromString(value));
+  }
+
+  get platformName(): string {
+    let value = this.get("platformName");
+    return value!.toString();
+  }
+
+  set platformName(value: string) {
+    this.set("platformName", Value.fromString(value));
+  }
+
+  get value(): BigInt {
+    let value = this.get("value");
+    return value!.toBigInt();
+  }
+
+  set value(value: BigInt) {
+    this.set("value", Value.fromBigInt(value));
+  }
+
+  get userBalance(): BigInt {
+    let value = this.get("userBalance");
+    return value!.toBigInt();
+  }
+
+  set userBalance(value: BigInt) {
+    this.set("userBalance", Value.fromBigInt(value));
+  }
+
+  get blockTimestamp(): BigInt {
+    let value = this.get("blockTimestamp");
+    return value!.toBigInt();
+  }
+
+  set blockTimestamp(value: BigInt) {
+    this.set("blockTimestamp", Value.fromBigInt(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value!.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
+}
+
+export class userWithdraw extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save userWithdraw entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type userWithdraw must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("userWithdraw", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): userWithdraw | null {
+    return changetype<userWithdraw | null>(
+      store.get("userWithdraw", id.toHexString())
+    );
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get tokenId(): BigInt {
+    let value = this.get("tokenId");
+    return value!.toBigInt();
+  }
+
+  set tokenId(value: BigInt) {
+    this.set("tokenId", Value.fromBigInt(value));
+  }
+
+  get tokenName(): string {
+    let value = this.get("tokenName");
+    return value!.toString();
+  }
+
+  set tokenName(value: string) {
+    this.set("tokenName", Value.fromString(value));
+  }
+
+  get platformName(): string {
+    let value = this.get("platformName");
+    return value!.toString();
+  }
+
+  set platformName(value: string) {
+    this.set("platformName", Value.fromString(value));
+  }
+
+  get value(): BigInt {
+    let value = this.get("value");
+    return value!.toBigInt();
+  }
+
+  set value(value: BigInt) {
+    this.set("value", Value.fromBigInt(value));
+  }
+
+  get userBalance(): BigInt {
+    let value = this.get("userBalance");
+    return value!.toBigInt();
+  }
+
+  set userBalance(value: BigInt) {
+    this.set("userBalance", Value.fromBigInt(value));
+  }
+
+  get blockTimestamp(): BigInt {
+    let value = this.get("blockTimestamp");
+    return value!.toBigInt();
+  }
+
+  set blockTimestamp(value: BigInt) {
+    this.set("blockTimestamp", Value.fromBigInt(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value!.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
+}
+
 export class userEarn extends Entity {
   constructor(id: Bytes) {
     super();
@@ -305,22 +517,13 @@ export class userEarn extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
-  get totalDeposit(): BigInt {
-    let value = this.get("totalDeposit");
+  get tokenId(): BigInt {
+    let value = this.get("tokenId");
     return value!.toBigInt();
   }
 
-  set totalDeposit(value: BigInt) {
-    this.set("totalDeposit", Value.fromBigInt(value));
-  }
-
-  get totalWithdraw(): BigInt {
-    let value = this.get("totalWithdraw");
-    return value!.toBigInt();
-  }
-
-  set totalWithdraw(value: BigInt) {
-    this.set("totalWithdraw", Value.fromBigInt(value));
+  set tokenId(value: BigInt) {
+    this.set("tokenId", Value.fromBigInt(value));
   }
 
   get tokenName(): string {
@@ -339,6 +542,24 @@ export class userEarn extends Entity {
 
   set platformName(value: string) {
     this.set("platformName", Value.fromString(value));
+  }
+
+  get totalDeposit(): BigInt {
+    let value = this.get("totalDeposit");
+    return value!.toBigInt();
+  }
+
+  set totalDeposit(value: BigInt) {
+    this.set("totalDeposit", Value.fromBigInt(value));
+  }
+
+  get totalWithdraw(): BigInt {
+    let value = this.get("totalWithdraw");
+    return value!.toBigInt();
+  }
+
+  set totalWithdraw(value: BigInt) {
+    this.set("totalWithdraw", Value.fromBigInt(value));
   }
 
   get userBalance(): BigInt {

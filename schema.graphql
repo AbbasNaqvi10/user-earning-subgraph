@@ -20,6 +20,8 @@ type Transfer @entity(immutable: true) {
 
 type User @entity {
 id: Bytes!
+deposit: [userDeposit!]!
+withdraw: [userWithdraw!]!
 earn: [userEarn!]!
 }
 
@@ -29,12 +31,35 @@ totalDeposit: BigInt!
 totalWithdraw: BigInt!
 }
 
-type userEarn @entity {
+type userDeposit @entity {
 id: Bytes!
-totalDeposit: BigInt!
-totalWithdraw: BigInt!
+tokenId: BigInt!
 tokenName: String!
 platformName: String!
+value: BigInt!
+userBalance: BigInt!
+blockTimestamp: BigInt!
+blockNumber: BigInt!
+}
+
+type userWithdraw @entity {
+id: Bytes!
+tokenId: BigInt!
+tokenName: String!
+platformName: String!
+value: BigInt!
+userBalance: BigInt!
+blockTimestamp: BigInt!
+blockNumber: BigInt!
+}
+
+type userEarn @entity {
+id: Bytes!
+tokenId: BigInt!
+tokenName: String!
+platformName: String!
+totalDeposit: BigInt!
+totalWithdraw: BigInt!
 userBalance: BigInt!
 blockTimestamp: BigInt!
 blockNumber: BigInt!
