@@ -18,24 +18,24 @@ type Transfer @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type Deposit @entity {
-  id: Bytes!
-  from: Bytes! # address
-  value: BigInt! # uint256
-  timestamp: BigInt! # uint256
-  shares: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type User @entity {
+id: Bytes!
+earn: [userEarn!]!
 }
 
-type Withdraw @entity {
-  id: Bytes!
-  from: Bytes! # address
-  value: BigInt! # uint256
-  timestamp: BigInt! # uint256
-  shares: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Earn @entity {
+id: String!
+totalDeposit: BigInt!
+totalWithdraw: BigInt!
+}
+
+type userEarn @entity {
+id: Bytes!
+totalDeposit: BigInt!
+totalWithdraw: BigInt!
+tokenName: String!
+platformName: String!
+userBalance: BigInt!
+blockTimestamp: BigInt!
+blockNumber: BigInt!
 }

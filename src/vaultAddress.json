@@ -1,0 +1,72 @@
+[
+    {
+      "name": "WETH-WstETH",
+      "platform": "SwapFish",
+      "vault_addr": "0x33BD22e9D83C7A74199405aF2D8dfA21309F719F"
+    },
+    {
+      "name": "WETH-WBTC",
+      "platform": "SwapFish",
+      "vault_addr": "0xE80424377bF6D74329DcFc56cfdf3611c385Fdd0"
+    },
+    {
+      "name": "USDC-TUSD",
+      "platform": "SwapFish",
+      "vault_addr": "0xaBF8a83a6724ceCb21b6a54394724A7412B99dF9"
+    },
+    {
+      "name": "USDC-USX",
+      "platform": "SwapFish",
+      "vault_addr": "0x7EfB566135a986d1723869F8F0204b9ce6291fB5"
+    },
+    {
+      "name": "WETH-MAGIC",
+      "platform": "SushiSwap",
+      "vault_addr": "0x1455497ECf9f37619259d801c918C6b7D33ca933"
+    },
+    {
+      "name": "WETH-PLS",
+      "platform": "Plutus",
+      "vault_addr": "0x0F6aB743b9E4c42B4b5d392074f174AEc3848704"
+    },
+    {
+      "name": "USDT",
+      "platform": "Dodo",
+      "vault_addr": "0xD12E66DDA43557D7eCeA3852CF64D441212e07B1"
+    },
+    {
+      "name": "USDC",
+      "platform": "Dodo",
+      "vault_addr": "0x6c0415b9F728BE851FcB1c4d5443C168Fdf20092"
+    },
+    {
+      "name": "GMX",
+      "platform": "Gmx",
+      "vault_addr": "0xAE24d2C3bb42Dab0cC54478Bb7868f54b7a91DF9"
+    },
+    {
+      "name": "WETH-DAI",
+      "platform": "SushiSwap",
+      "vault_addr": "0xF73e52e7185dDE30eC58336bc186f392354bF784"
+    },
+    {
+      "name": "WETH-USDC",
+      "platform": "SushiSwap",
+      "vault_addr": "0x8C55e9D918B2315Eb3192C2bAFf07C2e9cf55E01"
+    },
+    {
+      "name": "WETH-USDT",
+      "platform": "SushiSwap",
+      "vault_addr": "0xa7bff08cADebFc239Aa6A127064Af4a05EA61Fcb"
+    },
+    {
+      "name": "WETH-WBTC",
+      "platform": "SushiSwap",
+      "vault_addr": "0x3043e7675c956EAfcDF006458b296F1fe8B0CA7C"
+    },
+    {
+      "name": "FRAX",
+      "platform": "Stargate",
+      "vault_addr": "0xACD067eC75f5aA7F4ff778A8De0A1252A1852543"
+    }
+]
