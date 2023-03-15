@@ -17,20 +17,20 @@ import {
 import { Address, BigInt, log } from "@graphprotocol/graph-ts";
 
 let contractArray = [
-  "WETH_WstETH",
-  "WETH_WBTC",
-  "USDC_TUSD",
-  "USDC_USX",
-  "WETH_MAGIC",
-  "WETH_PLS",
-  "USDT",
-  "USDC",
-  "GMX",
-  "WETH_DAI",
-  "WETH_USDC",
-  "WETH_USDT",
-  "WETH_WBTC",
-  "FRAX",
+  "Weth_Wsteth",
+  "Weth_Wbtc_SwapFish",
+  "Usdc_Tusd",
+  "Usdc_Usx",
+  "Weth_Magic",
+  "Weth_Pls",
+  "Usdt",
+  "Usdc",
+  "Gmx",
+  "Weth_Dai",
+  "Weth_Usdc",
+  "Weth_Usdt",
+  "Weth_Wbtc_UniSwap",
+  "Frax",
 ];
 let idArray = [15, 14, 12, 11, 10, 8, 7, 6, 5, 1, 2, 3, 4, 9];
 let nameArray = [
