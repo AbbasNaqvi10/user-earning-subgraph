@@ -9,13 +9,29 @@ import {
   Approval,
   Transfer,
   User,
-  Earn,
-  userEarn,
-  userDeposit,
-  userWithdraw,
+  PeriodEarn,
+  UserToken,
+  Deposit,
+  Withdraw,
 } from "../generated/schema";
 import { Address, BigInt, log } from "@graphprotocol/graph-ts";
 
+let contractArray = [
+  "WETH_WstETH",
+  "WETH_WBTC",
+  "USDC_TUSD",
+  "USDC_USX",
+  "WETH_MAGIC",
+  "WETH_PLS",
+  "USDT",
+  "USDC",
+  "GMX",
+  "WETH_DAI",
+  "WETH_USDC",
+  "WETH_USDT",
+  "WETH_WBTC",
+  "FRAX",
+];
 let idArray = [15, 14, 12, 11, 10, 8, 7, 6, 5, 1, 2, 3, 4, 9];
 let nameArray = [
   "WETH_WstETH",
@@ -103,6 +119,7 @@ export function handleDeposit(event: DepositEvent): void {
   let tokenName = "WETH_WstETH";
   let platform = "SwapFish";
   let vaultAddress = event.address;
+  let userId = event.params._from;
 
   for (let i = 0; i < vaultArray.length; i++) {
     log.info("Inside for loop", []);
@@ -118,78 +135,58 @@ export function handleDeposit(event: DepositEvent): void {
     }
   }
 
-  let deposit = new userDeposit(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  );
-  deposit.tokenId = tokenId;
-  deposit.tokenName = tokenName;
-  deposit.platformName = platform;
-  deposit.value = event.params._value;
-  deposit.userBalance = contract.balanceOf(event.params._from);
-  deposit.blockTimestamp = event.block.timestamp;
-  deposit.blockNumber = event.block.number;
-
-  let user = User.load(event.params._from);
+  let user = User.load(userId);
 
   if (!user) {
-    user = new User(event.params._from);
-    let earn = Earn.load(
-      event.params._from
-        .toString()
-        .concat(tokenName)
-        .concat(platform)
-    );
-    if (!earn) {
-      earn = new Earn(
-        event.params._from
-          .toString()
-          .concat(tokenName)
-          .concat(platform)
-      );
-      earn.totalDeposit = zero;
-      earn.totalWithdraw = zero;
+    user = new User(userId);
+    let userToken = UserToken.load(vaultAddress.concat(userId));
+    if (!userToken) {
+      userToken = new UserToken(vaultAddress.concat(userId));
+
+      userToken.userId = userId;
+      userToken.vaultAddress = vaultAddress;
+      userToken.tokenId = tokenId;
+      userToken.tokenName = tokenName;
+      userToken.platformName = platform;
+      userToken.deposit = zero;
+      userToken.withdraw = zero;
+      userToken.userBalance = zero;
+      userToken.blockTimestamp = event.block.timestamp;
+      userToken.blockNumber = event.block.number;
     }
-    user.deposit = [];
-    user.withdraw = [];
-    user.earn = [];
 
-    let depositId = deposit.id;
-    let userDepositArray = user.deposit;
-    userDepositArray.push(depositId);
-    user.deposit = userDepositArray;
+    userToken.deposit = userToken.deposit.plus(event.params._value);
+    userToken.userBalance = contract.balanceOf(userId);
+    userToken.blockTimestamp = event.block.timestamp;
+    userToken.blockNumber = event.block.number;
 
-    earn.totalDeposit = earn.totalDeposit.plus(event.params._value);
-
-    deposit.save();
     user.save();
-    earn.save();
+    userToken.save();
     return;
   }
-  let earn = Earn.load(
-    event.params._from
-      .toString()
-      .concat(tokenName)
-      .concat(platform)
-  );
-  if (!earn) {
-    earn = new Earn(
-      event.params._from
-        .toString()
-        .concat(tokenName)
-        .concat(platform)
-    );
-    earn.totalDeposit = zero;
-    earn.totalWithdraw = zero;
-  }
-  let depositId = deposit.id;
-  let userDepositArray = user.deposit;
-  userDepositArray.push(depositId);
-  user.deposit = userDepositArray;
-  earn.totalDeposit = earn.totalDeposit.plus(event.params._value);
 
-  deposit.save();
+  let userToken = UserToken.load(vaultAddress.concat(userId));
+
+  if (!userToken) {
+    userToken = new UserToken(vaultAddress.concat(userId));
+    userToken.userId = userId;
+    userToken.tokenId = tokenId;
+    userToken.tokenName = tokenName;
+    userToken.platformName = platform;
+    userToken.deposit = zero;
+    userToken.withdraw = zero;
+    userToken.userBalance = zero;
+    userToken.blockTimestamp = event.block.timestamp;
+    userToken.blockNumber = event.block.number;
+  }
+
+  userToken.deposit = userToken.deposit.plus(event.params._value);
+  userToken.userBalance = contract.balanceOf(userId);
+  userToken.blockTimestamp = event.block.timestamp;
+  userToken.blockNumber = event.block.number;
+
   user.save();
-  earn.save();
+  userToken.save();
 }
 
 export function handleWithdraw(event: WithdrawEvent): void {
@@ -199,6 +196,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
   let tokenName = "WETH_WstETH";
   let platform = "SwapFish";
   let vaultAddress = event.address;
+  let userId = event.params._from;
 
   for (let i = 0; i < vaultArray.length; i++) {
     log.info("Inside for loop", []);
@@ -214,117 +212,97 @@ export function handleWithdraw(event: WithdrawEvent): void {
     }
   }
 
-  let withdraw = new userWithdraw(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  );
-  withdraw.tokenId = tokenId;
-  withdraw.tokenName = tokenName;
-  withdraw.platformName = platform;
-  withdraw.value = event.params._value;
-  withdraw.userBalance = contract.balanceOf(event.params._from);
-  withdraw.blockTimestamp = event.block.timestamp;
-  withdraw.blockNumber = event.block.number;
-
-  let user = User.load(event.params._from);
+  let user = User.load(userId);
 
   if (!user) {
-    user = new User(event.params._from);
-    let earn = Earn.load(
-      event.params._from
-        .toString()
-        .concat(tokenName)
-        .concat(platform)
-    );
-    if (!earn) {
-      earn = new Earn(
-        event.params._from
-          .toString()
-          .concat(tokenName)
-          .concat(platform)
-      );
-      earn.totalDeposit = zero;
-      earn.totalWithdraw = zero;
+    user = new User(userId);
+    let userToken = UserToken.load(vaultAddress.concat(userId));
+    if (!userToken) {
+      userToken = new UserToken(vaultAddress.concat(userId));
+      userToken.userId = userId;
+      userToken.vaultAddress = vaultAddress;
+      userToken.tokenId = tokenId;
+      userToken.tokenName = tokenName;
+      userToken.platformName = platform;
+      userToken.deposit = zero;
+      userToken.withdraw = zero;
+      userToken.userBalance = zero;
+      userToken.blockTimestamp = event.block.timestamp;
+      userToken.blockNumber = event.block.number;
     }
-    user.deposit = [];
-    user.withdraw = [];
-    user.earn = [];
 
-    let withdrawId = withdraw.id;
-    let userWithdrawArray = user.withdraw;
-    userWithdrawArray.push(withdrawId);
-    user.withdraw = userWithdrawArray;
+    userToken.deposit = userToken.deposit.plus(event.params._value);
+    userToken.userBalance = contract.balanceOf(userId);
+    userToken.blockTimestamp = event.block.timestamp;
+    userToken.blockNumber = event.block.number;
 
-    earn.totalWithdraw = earn.totalWithdraw.plus(event.params._value);
-    if (contract.balanceOf(event.params._from).equals(zero)) {
-      let userEarning = new userEarn(
+    if (contract.balanceOf(userId).equals(zero)) {
+      let periodEarn = new PeriodEarn(
         event.transaction.hash.concatI32(event.logIndex.toI32())
       );
-      userEarning.totalDeposit = earn.totalDeposit;
-      userEarning.totalWithdraw = earn.totalWithdraw;
-      userEarning.tokenId = tokenId;
-      userEarning.tokenName = tokenName;
-      userEarning.platformName = platform;
-      userEarning.userBalance = contract.balanceOf(event.params._from);
-      userEarning.blockTimestamp = event.block.timestamp;
-      userEarning.blockNumber = event.block.number;
-      let earnId = userEarning.id;
-      let earnArray = user.earn;
-      earnArray.push(earnId);
-      user.earn = earnArray;
-      earn.totalDeposit = zero;
-      earn.totalWithdraw = zero;
-      userEarning.save();
+      periodEarn.userId = userId;
+      periodEarn.vaultAddress = vaultAddress;
+      periodEarn.tokenId = tokenId;
+      periodEarn.tokenName = tokenName;
+      periodEarn.platformName = platform;
+      periodEarn.totalDeposit = userToken.deposit;
+      periodEarn.totalWithdraw = userToken.withdraw;
+      periodEarn.userBalance = contract.balanceOf(userId);
+      periodEarn.blockTimestamp = event.block.timestamp;
+      periodEarn.blockNumber = event.block.number;
+      
+      userToken.deposit = zero;
+      userToken.withdraw = zero;
+
+      periodEarn.save();
     }
 
     user.save();
-    withdraw.save();
-    earn.save();
+    userToken.save();
     return;
   }
-  let earn = Earn.load(
-    event.params._from
-      .toString()
-      .concat(tokenName)
-      .concat(platform)
-  );
-  if (!earn) {
-    earn = new Earn(
-      event.params._from
-        .toString()
-        .concat(tokenName)
-        .concat(platform)
-    );
-    earn.totalDeposit = zero;
-    earn.totalWithdraw = zero;
-  }
-  earn.totalWithdraw = earn.totalWithdraw.plus(event.params._value);
-  let withdrawId = withdraw.id;
-  let userWithdrawArray = user.withdraw;
-  userWithdrawArray.push(withdrawId);
-  user.withdraw = userWithdrawArray;
 
-  if (contract.balanceOf(event.params._from).equals(zero)) {
-    let userEarning = new userEarn(
-      event.transaction.hash.concatI32(event.logIndex.toI32())
-    );
-    userEarning.totalDeposit = earn.totalDeposit;
-    userEarning.totalWithdraw = earn.totalWithdraw;
-    userEarning.tokenId = tokenId;
-    userEarning.tokenName = tokenName;
-    userEarning.platformName = platform;
-    userEarning.userBalance = contract.balanceOf(event.params._from);
-    userEarning.blockTimestamp = event.block.timestamp;
-    userEarning.blockNumber = event.block.number;
-    let earnId = userEarning.id;
-    let earnArray = user.earn;
-    earnArray.push(earnId);
-    user.earn = earnArray;
-    earn.totalDeposit = zero;
-    earn.totalWithdraw = zero;
-    userEarning.save();
-  }
+  let userToken = UserToken.load(vaultAddress.concat(userId));
+
+    if (!userToken) {
+      userToken = new UserToken(vaultAddress.concat(userId));
+      userToken.userId = userId;
+      userToken.tokenId = tokenId;
+      userToken.tokenName = tokenName;
+      userToken.platformName = platform;
+      userToken.deposit = zero;
+      userToken.withdraw = zero;
+      userToken.userBalance = zero;
+      userToken.blockTimestamp = event.block.timestamp;
+      userToken.blockNumber = event.block.number;
+    }
+    
+    userToken.withdraw = userToken.withdraw.plus(event.params._value);
+    userToken.userBalance = contract.balanceOf(userId);
+    userToken.blockTimestamp = event.block.timestamp;
+    userToken.blockNumber = event.block.number;
+
+    if (contract.balanceOf(userId).equals(zero)) {
+      let periodEarn = new PeriodEarn(
+        event.transaction.hash.concatI32(event.logIndex.toI32())
+      );
+      periodEarn.userId = userId;
+      periodEarn.vaultAddress = vaultAddress;
+      periodEarn.tokenId = tokenId;
+      periodEarn.tokenName = tokenName;
+      periodEarn.platformName = platform;
+      periodEarn.totalDeposit = userToken.deposit;
+      periodEarn.totalWithdraw = userToken.withdraw;
+      periodEarn.userBalance = contract.balanceOf(userId);
+      periodEarn.blockTimestamp = event.block.timestamp;
+      periodEarn.blockNumber = event.block.number;
+      
+      userToken.deposit = zero;
+      userToken.withdraw = zero;
+
+      periodEarn.save();
+    }
 
   user.save();
-  withdraw.save();
-  earn.save();
+  userToken.save();
 }

@@ -20,18 +20,38 @@ type Transfer @entity(immutable: true) {
 
 type User @entity {
 id: Bytes!
-deposit: [userDeposit!]!
-withdraw: [userWithdraw!]!
-earn: [userEarn!]!
+earn: [UserToken!]! @derivedFrom(field: "userId")
 }
 
-type Earn @entity {
-id: String!
+type UserToken @entity {
+id: Bytes!
+userId: User!
+vaultAddress: Bytes!
+tokenId: BigInt!
+tokenName: String!
+platformName: String!
+deposit: BigInt!
+withdraw: BigInt!
+userBalance: BigInt!
+blockTimestamp: BigInt!
+blockNumber: BigInt!
+}
+
+type PeriodEarn @entity {
+id: Bytes!
+userId: Bytes!
+vaultAddress: Bytes!
+tokenId: BigInt!
+tokenName: String!
+platformName: String!
 totalDeposit: BigInt!
 totalWithdraw: BigInt!
+userBalance: BigInt!
+blockTimestamp: BigInt!
+blockNumber: BigInt!
 }
 
-type userDeposit @entity {
+type Deposit @entity {
 id: Bytes!
 tokenId: BigInt!
 tokenName: String!
@@ -42,24 +62,12 @@ blockTimestamp: BigInt!
 blockNumber: BigInt!
 }
 
-type userWithdraw @entity {
+type Withdraw @entity {
 id: Bytes!
 tokenId: BigInt!
 tokenName: String!
 platformName: String!
 value: BigInt!
-userBalance: BigInt!
-blockTimestamp: BigInt!
-blockNumber: BigInt!
-}
-
-type userEarn @entity {
-id: Bytes!
-tokenId: BigInt!
-tokenName: String!
-platformName: String!
-totalDeposit: BigInt!
-totalWithdraw: BigInt!
 userBalance: BigInt!
 blockTimestamp: BigInt!
 blockNumber: BigInt!
