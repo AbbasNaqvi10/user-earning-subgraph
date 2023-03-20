@@ -35,8 +35,8 @@ withdraw: BigInt!
 userBalance: BigInt!
 token0: Bytes!
 token1: Bytes!
-reserver0: BigInt!
-reserver1: BigInt!
+reserve0: BigInt!
+reserve1: BigInt!
 totalSupply: BigInt!
 blockTimestamp: BigInt!
 blockNumber: BigInt!
@@ -66,8 +66,8 @@ value: BigInt!
 shares: BigInt!
 token0: Bytes!
 token1: Bytes!
-reserver0: BigInt!
-reserver1: BigInt!
+reserve0: BigInt!
+reserve1: BigInt!
 totalSupply: BigInt!
 userBalance: BigInt!
 blockTimestamp: BigInt!

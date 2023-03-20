@@ -170,8 +170,8 @@ export function handleDeposit(event: DepositEvent): void {
     userToken.userBalance = contract.balanceOf(userId);
     userToken.token0 = token0;
     userToken.token1 = token1;
-    userToken.reserver0 = reserve0;
-    userToken.reserver1 = reserve1;
+    userToken.reserve0 = reserve0;
+    userToken.reserve1 = reserve1;
     userToken.totalSupply = totalSupply;
     userToken.blockTimestamp = event.block.timestamp;
     userToken.blockNumber = event.block.number;
@@ -184,8 +184,8 @@ export function handleDeposit(event: DepositEvent): void {
     deposit.value = event.params._value;
     deposit.token0 = token0;
     deposit.token1 = token1;
-    deposit.reserver0 = reserve0;
-    deposit.reserver1 = reserve1;
+    deposit.reserve0 = reserve0;
+    deposit.reserve1 = reserve1;
     deposit.totalSupply = totalSupply;
     deposit.userBalance = contract.balanceOf(userId);
     deposit.blockTimestamp = event.block.timestamp;
@@ -216,8 +216,8 @@ export function handleDeposit(event: DepositEvent): void {
   userToken.userBalance = contract.balanceOf(userId);
   userToken.token0 = token0;
   userToken.token1 = token1;
-  userToken.reserver0 = reserve0;
-  userToken.reserver1 = reserve1;
+  userToken.reserve0 = reserve0;
+  userToken.reserve1 = reserve1;
   userToken.totalSupply = totalSupply;
   userToken.blockTimestamp = event.block.timestamp;
   userToken.blockNumber = event.block.number;
@@ -230,8 +230,8 @@ export function handleDeposit(event: DepositEvent): void {
   deposit.value = event.params._value;
   deposit.token0 = token0;
   deposit.token1 = token1;
-  deposit.reserver0 = reserve0;
-  deposit.reserver1 = reserve1;
+  deposit.reserve0 = reserve0;
+  deposit.reserve1 = reserve1;
   deposit.totalSupply = totalSupply;
   deposit.userBalance = contract.balanceOf(userId);
   deposit.blockTimestamp = event.block.timestamp;
