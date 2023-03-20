@@ -347,22 +347,22 @@ export class UserToken extends Entity {
     this.set("token1", Value.fromBytes(value));
   }
 
-  get reserver0(): BigInt {
-    let value = this.get("reserver0");
+  get reserve0(): BigInt {
+    let value = this.get("reserve0");
     return value!.toBigInt();
   }
 
-  set reserver0(value: BigInt) {
-    this.set("reserver0", Value.fromBigInt(value));
+  set reserve0(value: BigInt) {
+    this.set("reserve0", Value.fromBigInt(value));
   }
 
-  get reserver1(): BigInt {
-    let value = this.get("reserver1");
+  get reserve1(): BigInt {
+    let value = this.get("reserve1");
     return value!.toBigInt();
   }
 
-  set reserver1(value: BigInt) {
-    this.set("reserver1", Value.fromBigInt(value));
+  set reserve1(value: BigInt) {
+    this.set("reserve1", Value.fromBigInt(value));
   }
 
   get totalSupply(): BigInt {
@@ -620,22 +620,22 @@ export class Deposit extends Entity {
     this.set("token1", Value.fromBytes(value));
   }
 
-  get reserver0(): BigInt {
-    let value = this.get("reserver0");
+  get reserve0(): BigInt {
+    let value = this.get("reserve0");
     return value!.toBigInt();
   }
 
-  set reserver0(value: BigInt) {
-    this.set("reserver0", Value.fromBigInt(value));
+  set reserve0(value: BigInt) {
+    this.set("reserve0", Value.fromBigInt(value));
   }
 
-  get reserver1(): BigInt {
-    let value = this.get("reserver1");
+  get reserve1(): BigInt {
+    let value = this.get("reserve1");
     return value!.toBigInt();
   }
 
-  set reserver1(value: BigInt) {
-    this.set("reserver1", Value.fromBigInt(value));
+  set reserve1(value: BigInt) {
+    this.set("reserve1", Value.fromBigInt(value));
   }
 
   get totalSupply(): BigInt {
