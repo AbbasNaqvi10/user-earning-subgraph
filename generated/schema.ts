@@ -329,6 +329,51 @@ export class UserToken extends Entity {
     this.set("userBalance", Value.fromBigInt(value));
   }
 
+  get token0(): Bytes {
+    let value = this.get("token0");
+    return value!.toBytes();
+  }
+
+  set token0(value: Bytes) {
+    this.set("token0", Value.fromBytes(value));
+  }
+
+  get token1(): Bytes {
+    let value = this.get("token1");
+    return value!.toBytes();
+  }
+
+  set token1(value: Bytes) {
+    this.set("token1", Value.fromBytes(value));
+  }
+
+  get reserver0(): BigInt {
+    let value = this.get("reserver0");
+    return value!.toBigInt();
+  }
+
+  set reserver0(value: BigInt) {
+    this.set("reserver0", Value.fromBigInt(value));
+  }
+
+  get reserver1(): BigInt {
+    let value = this.get("reserver1");
+    return value!.toBigInt();
+  }
+
+  set reserver1(value: BigInt) {
+    this.set("reserver1", Value.fromBigInt(value));
+  }
+
+  get totalSupply(): BigInt {
+    let value = this.get("totalSupply");
+    return value!.toBigInt();
+  }
+
+  set totalSupply(value: BigInt) {
+    this.set("totalSupply", Value.fromBigInt(value));
+  }
+
   get blockTimestamp(): BigInt {
     let value = this.get("blockTimestamp");
     return value!.toBigInt();
@@ -555,6 +600,51 @@ export class Deposit extends Entity {
 
   set shares(value: BigInt) {
     this.set("shares", Value.fromBigInt(value));
+  }
+
+  get token0(): Bytes {
+    let value = this.get("token0");
+    return value!.toBytes();
+  }
+
+  set token0(value: Bytes) {
+    this.set("token0", Value.fromBytes(value));
+  }
+
+  get token1(): Bytes {
+    let value = this.get("token1");
+    return value!.toBytes();
+  }
+
+  set token1(value: Bytes) {
+    this.set("token1", Value.fromBytes(value));
+  }
+
+  get reserver0(): BigInt {
+    let value = this.get("reserver0");
+    return value!.toBigInt();
+  }
+
+  set reserver0(value: BigInt) {
+    this.set("reserver0", Value.fromBigInt(value));
+  }
+
+  get reserver1(): BigInt {
+    let value = this.get("reserver1");
+    return value!.toBigInt();
+  }
+
+  set reserver1(value: BigInt) {
+    this.set("reserver1", Value.fromBigInt(value));
+  }
+
+  get totalSupply(): BigInt {
+    let value = this.get("totalSupply");
+    return value!.toBigInt();
+  }
+
+  set totalSupply(value: BigInt) {
+    this.set("totalSupply", Value.fromBigInt(value));
   }
 
   get userBalance(): BigInt {

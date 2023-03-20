@@ -5,6 +5,7 @@ import {
   Withdraw as WithdrawEvent,
   Weth_Usdc,
 } from "../generated/Weth_Usdc/Weth_Usdc";
+import { UniswapV2Pair } from "../generated/UniswapV2Pair/UniswapV2Pair";
 import {
   Approval,
   Transfer,
@@ -120,6 +121,13 @@ export function handleDeposit(event: DepositEvent): void {
   let platform = "SwapFish";
   let vaultAddress = event.address;
   let userId = event.params._from;
+  let pairContract = UniswapV2Pair.bind(contract.token());
+  let token0 = pairContract.token0();
+  let token1 = pairContract.token1();
+  let reserves = pairContract.getReserves();
+  let reserve0 = reserves.get_reserve0();
+  let reserve1 = reserves.get_reserve1();
+  let totalSupply = pairContract.totalSupply();
   let deposit = new Deposit(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   );
@@ -160,19 +168,29 @@ export function handleDeposit(event: DepositEvent): void {
 
     userToken.deposit = userToken.deposit.plus(event.params._value);
     userToken.userBalance = contract.balanceOf(userId);
+    userToken.token0 = token0;
+    userToken.token1 = token1;
+    userToken.reserver0 = reserve0;
+    userToken.reserver1 = reserve1;
+    userToken.totalSupply = totalSupply;
     userToken.blockTimestamp = event.block.timestamp;
     userToken.blockNumber = event.block.number;
-    
+
     deposit.tokenId = tokenId;
     deposit.tokenName = tokenName;
     deposit.platformName = platform;
     deposit.from = userId;
     deposit.shares = event.params._shares;
     deposit.value = event.params._value;
+    deposit.token0 = token0;
+    deposit.token1 = token1;
+    deposit.reserver0 = reserve0;
+    deposit.reserver1 = reserve1;
+    deposit.totalSupply = totalSupply;
     deposit.userBalance = contract.balanceOf(userId);
     deposit.blockTimestamp = event.block.timestamp;
     deposit.blockNumber = event.block.number;
-  
+
     deposit.save();
     user.save();
     userToken.save();
@@ -196,6 +214,11 @@ export function handleDeposit(event: DepositEvent): void {
 
   userToken.deposit = userToken.deposit.plus(event.params._value);
   userToken.userBalance = contract.balanceOf(userId);
+  userToken.token0 = token0;
+  userToken.token1 = token1;
+  userToken.reserver0 = reserve0;
+  userToken.reserver1 = reserve1;
+  userToken.totalSupply = totalSupply;
   userToken.blockTimestamp = event.block.timestamp;
   userToken.blockNumber = event.block.number;
 
@@ -205,6 +228,11 @@ export function handleDeposit(event: DepositEvent): void {
   deposit.from = userId;
   deposit.shares = event.params._shares;
   deposit.value = event.params._value;
+  deposit.token0 = token0;
+  deposit.token1 = token1;
+  deposit.reserver0 = reserve0;
+  deposit.reserver1 = reserve1;
+  deposit.totalSupply = totalSupply;
   deposit.userBalance = contract.balanceOf(userId);
   deposit.blockTimestamp = event.block.timestamp;
   deposit.blockNumber = event.block.number;
@@ -294,7 +322,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
     withdraw.userBalance = contract.balanceOf(userId);
     withdraw.blockTimestamp = event.block.timestamp;
     withdraw.blockNumber = event.block.number;
-  
+
     withdraw.save();
     user.save();
     userToken.save();
