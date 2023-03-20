@@ -530,6 +530,15 @@ export class Deposit extends Entity {
     this.set("platformName", Value.fromString(value));
   }
 
+  get from(): Bytes {
+    let value = this.get("from");
+    return value!.toBytes();
+  }
+
+  set from(value: Bytes) {
+    this.set("from", Value.fromBytes(value));
+  }
+
   get value(): BigInt {
     let value = this.get("value");
     return value!.toBigInt();
@@ -537,6 +546,15 @@ export class Deposit extends Entity {
 
   set value(value: BigInt) {
     this.set("value", Value.fromBigInt(value));
+  }
+
+  get shares(): BigInt {
+    let value = this.get("shares");
+    return value!.toBigInt();
+  }
+
+  set shares(value: BigInt) {
+    this.set("shares", Value.fromBigInt(value));
   }
 
   get userBalance(): BigInt {
@@ -625,6 +643,15 @@ export class Withdraw extends Entity {
     this.set("platformName", Value.fromString(value));
   }
 
+  get from(): Bytes {
+    let value = this.get("from");
+    return value!.toBytes();
+  }
+
+  set from(value: Bytes) {
+    this.set("from", Value.fromBytes(value));
+  }
+
   get value(): BigInt {
     let value = this.get("value");
     return value!.toBigInt();
@@ -632,6 +659,15 @@ export class Withdraw extends Entity {
 
   set value(value: BigInt) {
     this.set("value", Value.fromBigInt(value));
+  }
+
+  get shares(): BigInt {
+    let value = this.get("shares");
+    return value!.toBigInt();
+  }
+
+  set shares(value: BigInt) {
+    this.set("shares", Value.fromBigInt(value));
   }
 
   get userBalance(): BigInt {

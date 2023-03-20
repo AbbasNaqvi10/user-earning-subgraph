@@ -56,7 +56,9 @@ id: Bytes!
 tokenId: BigInt!
 tokenName: String!
 platformName: String!
+from: Bytes!
 value: BigInt!
+shares: BigInt!
 userBalance: BigInt!
 blockTimestamp: BigInt!
 blockNumber: BigInt!
@@ -67,7 +69,9 @@ id: Bytes!
 tokenId: BigInt!
 tokenName: String!
 platformName: String!
+from: Bytes!
 value: BigInt!
+shares: BigInt!
 userBalance: BigInt!
 blockTimestamp: BigInt!
 blockNumber: BigInt!
