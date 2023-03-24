@@ -82,6 +82,11 @@ platformName: String!
 from: Bytes!
 value: BigInt!
 shares: BigInt!
+token0: Bytes!
+token1: Bytes!
+reserve0: BigInt!
+reserve1: BigInt!
+totalSupply: BigInt!
 userBalance: BigInt!
 blockTimestamp: BigInt!
 blockNumber: BigInt!

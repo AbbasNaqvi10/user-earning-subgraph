@@ -280,8 +280,8 @@ dataSources:
       abis:
         - name: Hop_Weth
           file: ./abis/Hop_Weth.json
-        - name: HopLP
-          file: ./abis/HopLP.json
+        - name: HopLp
+          file: ./abis/HopLp.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -309,8 +309,8 @@ dataSources:
       abis:
         - name: Hop_Usdc
           file: ./abis/Hop_Usdc.json
-        - name: HopLP
-          file: ./abis/HopLP.json
+        - name: HopLp
+          file: ./abis/HopLp.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -338,8 +338,8 @@ dataSources:
       abis:
         - name: Hop_Usdt
           file: ./abis/Hop_Usdt.json
-        - name: HopLP
-          file: ./abis/HopLP.json
+        - name: HopLp
+          file: ./abis/HopLp.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -367,8 +367,8 @@ dataSources:
       abis:
         - name: Hop_Dai
           file: ./abis/Hop_Dai.json
-        - name: HopLP
-          file: ./abis/HopLP.json
+        - name: HopLp
+          file: ./abis/HopLp.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -378,4 +378,46 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
+      file: ./src/index.ts
+  - kind: ethereum
+    name: SushiLp
+    network: arbitrum-one
+    source:
+      address: "0x692a0B300366D1042679397e40f3d2cb4b8F7D30"
+      abi: SushiLp
+      startBlock: 68319838
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Transfer
+      abis:
+        - name: SushiLp
+          file: ./abis/SushiLp.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+      file: ./src/index.ts
+  - kind: ethereum
+    name: HopLp
+    network: arbitrum-one
+    source:
+      address: "0x905dfCD5649217c42684f23958568e533C711Aa3"
+      abi: HopLp
+      startBlock: 73140242
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Transfer
+      abis:
+        - name: HopLp
+          file: ./abis/HopLp.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
       file: ./src/index.ts

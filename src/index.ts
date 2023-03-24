@@ -5,7 +5,7 @@ import {
   Withdraw as WithdrawEvent,
   Weth_Usdc,
 } from "../generated/Weth_Usdc/Weth_Usdc";
-import { UniswapV2Pair } from "../generated/UniswapV2Pair/UniswapV2Pair";
+import { SushiLp } from "../generated/SushiLp/SushiLp";
 import {
   Approval,
   Transfer,
@@ -33,7 +33,7 @@ let contractArray = [
   "Weth_Wbtc_UniSwap",
   "Frax",
 ];
-let lpArray = ["SushiLp", "HopLp"]
+let lpArray = ["SushiLp", "HopLp"];
 let idArray = [15, 14, 12, 11, 10, 8, 7, 6, 5, 1, 2, 3, 4, 9];
 let nameArray = [
   "WETH_WstETH",
@@ -122,7 +122,7 @@ export function handleDeposit(event: DepositEvent): void {
   let platform = "SwapFish";
   let vaultAddress = event.address;
   let userId = event.params._from;
-  let pairContract = UniswapV2Pair.bind(contract.token());
+  let pairContract = SushiLp.bind(contract.token());
   let token0 = pairContract.token0();
   let token1 = pairContract.token1();
   let reserves = pairContract.getReserves();
@@ -251,6 +251,13 @@ export function handleWithdraw(event: WithdrawEvent): void {
   let platform = "SwapFish";
   let vaultAddress = event.address;
   let userId = event.params._from;
+  let pairContract = SushiLp.bind(contract.token());
+  let token0 = pairContract.token0();
+  let token1 = pairContract.token1();
+  let reserves = pairContract.getReserves();
+  let reserve0 = reserves.get_reserve0();
+  let reserve1 = reserves.get_reserve1();
+  let totalSupply = pairContract.totalSupply();
   let withdraw = new Withdraw(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   );
@@ -320,6 +327,11 @@ export function handleWithdraw(event: WithdrawEvent): void {
     withdraw.from = userId;
     withdraw.shares = event.params._shares;
     withdraw.value = event.params._value;
+    withdraw.token0 = token0;
+    withdraw.token1 = token1;
+    withdraw.reserve0 = reserve0;
+    withdraw.reserve1 = reserve1;
+    withdraw.totalSupply = totalSupply;
     withdraw.userBalance = contract.balanceOf(userId);
     withdraw.blockTimestamp = event.block.timestamp;
     withdraw.blockNumber = event.block.number;
@@ -377,6 +389,11 @@ export function handleWithdraw(event: WithdrawEvent): void {
   withdraw.from = userId;
   withdraw.shares = event.params._shares;
   withdraw.value = event.params._value;
+  withdraw.token0 = token0;
+  withdraw.token1 = token1;
+  withdraw.reserve0 = reserve0;
+  withdraw.reserve1 = reserve1;
+  withdraw.totalSupply = totalSupply;
   withdraw.userBalance = contract.balanceOf(userId);
   withdraw.blockTimestamp = event.block.timestamp;
   withdraw.blockNumber = event.block.number;
