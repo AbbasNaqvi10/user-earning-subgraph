@@ -33,6 +33,7 @@ let contractArray = [
   "Weth_Wbtc_UniSwap",
   "Frax",
 ];
+let lpArray = ["SushiLp", "HopLp"]
 let idArray = [15, 14, 12, 11, 10, 8, 7, 6, 5, 1, 2, 3, 4, 9];
 let nameArray = [
   "WETH_WstETH",
