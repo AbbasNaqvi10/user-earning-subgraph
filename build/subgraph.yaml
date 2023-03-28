@@ -59,7 +59,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Usdt\Weth_Usdt.wasm
   - kind: ethereum
     name: Weth_Wbtc_SushiSwap
     network: arbitrum-one
@@ -88,7 +88,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Wbtc_SushiSwap\Weth_Wbtc_SushiSwap.wasm
   - kind: ethereum
     name: Weth_Magic
     network: arbitrum-one
@@ -117,7 +117,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Magic\Weth_Magic.wasm
   - kind: ethereum
     name: Weth_Dai
     network: arbitrum-one
@@ -146,7 +146,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Dai\Weth_Dai.wasm
   - kind: ethereum
     name: Weth_Pls
     network: arbitrum-one
@@ -175,7 +175,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Pls\Weth_Pls.wasm
   - kind: ethereum
     name: Weth_Dpx
     network: arbitrum-one
@@ -204,7 +204,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Dpx\Weth_Dpx.wasm
   - kind: ethereum
     name: Weth_Rdpx
     network: arbitrum-one
@@ -233,7 +233,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Dpx\Weth_Dpx.wasm
   - kind: ethereum
     name: Weth_Sushi
     network: arbitrum-one
@@ -262,7 +262,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Dpx\Weth_Dpx.wasm
   - kind: ethereum
     name: Hop_Weth
     network: arbitrum-one
@@ -291,7 +291,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Dpx\Weth_Dpx.wasm
   - kind: ethereum
     name: Hop_Usdc
     network: arbitrum-one
@@ -320,7 +320,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Dpx\Weth_Dpx.wasm
   - kind: ethereum
     name: Hop_Usdt
     network: arbitrum-one
@@ -349,7 +349,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Dpx\Weth_Dpx.wasm
   - kind: ethereum
     name: Hop_Dai
     network: arbitrum-one
@@ -378,7 +378,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Dpx\Weth_Dpx.wasm
   - kind: ethereum
     name: SushiLp
     network: arbitrum-one
@@ -399,7 +399,7 @@ dataSources:
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Dpx\Weth_Dpx.wasm
   - kind: ethereum
     name: HopLp
     network: arbitrum-one
@@ -420,4 +420,4 @@ dataSources:
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
-      file: Weth_Usdc\Weth_Usdc.wasm
+      file: Weth_Dpx\Weth_Dpx.wasm

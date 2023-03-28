@@ -30,7 +30,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/index.ts
+      file: ./src/Weth_Usdc.ts
   - kind: ethereum
     name: Weth_Usdt
     network: arbitrum-one
@@ -59,7 +59,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/index.ts
+      file: ./src/Weth_Usdt.ts
   - kind: ethereum
     name: Weth_Wbtc_SushiSwap
     network: arbitrum-one
@@ -88,7 +88,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/index.ts
+      file: ./src/Weth_Wbtc_SushiSwap.ts
   - kind: ethereum
     name: Weth_Magic
     network: arbitrum-one
@@ -117,7 +117,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/index.ts
+      file: ./src/Weth_Magic.ts
   - kind: ethereum
     name: Weth_Dai
     network: arbitrum-one
@@ -146,7 +146,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/index.ts
+      file: ./src/Weth_Dai.ts
   - kind: ethereum
     name: Weth_Pls
     network: arbitrum-one
@@ -175,7 +175,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/index.ts
+      file: ./src/Weth_Pls.ts
   - kind: ethereum
     name: Weth_Dpx
     network: arbitrum-one
