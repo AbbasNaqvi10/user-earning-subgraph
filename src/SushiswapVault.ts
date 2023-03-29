@@ -17,7 +17,7 @@ import {
   } from "../generated/schema";
   import { Address, BigInt, log } from "@graphprotocol/graph-ts";
   
-  let idArray = [10, 8, 1, 2, 3, 4];
+  let idArray = [10, 8, 1, 2, 3, 4, 26, 25, 24];
   let tokenNameArray = [
     "Weth_Magic",
     "Weth_Pls",
@@ -25,14 +25,9 @@ import {
     "Weth_Usdc",
     "Weth_Usdt",
     "Weth_Wbtc_SushiSwap",
-  ];
-  let platformArray = [
-    "SushiSwap",
-    "SushiSwap",
-    "SushiSwap",
-    "SushiSwap",
-    "SushiSwap",
-    "SushiSwap",
+    "Weth_Sushi",
+    "Weth_Rdpx",
+    "Weth_Dpx",
   ];
   let vaultArray: Array<string> = [
     "0x3F9012f9bF3172c26B1B7246B8bc62148842B013",
@@ -41,6 +36,9 @@ import {
     "0x46910A4AbA500b71F213150A0E99201Fd5c8FCec",
     "0xf8bDcf1Cf4134b2864cdbE685A8128F90ED0E16e",
     "0xdf9d86bC4765a9C64e85323A9408dbee0115d22E",
+    "0x8f2CC9FC5ecf3D30aC83c96189cdd6EC2810E2f8",
+    "0x286d24B99b5CB6fE081f0e6Bd44EcbfCC1171A56",
+    "0x3C0c76ceb491Cb0Bacb31F8e7dc6407A25FD87C0",
   ];
   
   export function handleApproval(event: ApprovalEvent): void {
@@ -78,7 +76,7 @@ import {
     let contract = SushiswapVault.bind(event.address);
     let tokenId = zero;
     let tokenName = "Weth_Magic";
-    let platform = "SwapFish";
+    let platform = "SushiSwap";
     let vaultAddress = event.address;
     let userId = event.params._from;
     
@@ -89,9 +87,6 @@ import {
         log.info("Inside if", []);
         tokenId = BigInt.fromI64(idArray[i]);
         tokenName = tokenNameArray[i];
-        platform = platformArray[i];
-        // // @ts-ignore
-        // contract = Classes[i].bind(event.address);
         break;
       }
     }
@@ -207,7 +202,7 @@ import {
     let contract = SushiswapVault.bind(event.address);
     let tokenId = zero;
     let tokenName = "Weth_Magic";
-    let platform = "SwapFish";
+    let platform = "SushiSwap";
     let vaultAddress = event.address;
     let userId = event.params._from;
     let pairContract = SushiLp.bind(contract.token());
@@ -227,7 +222,6 @@ import {
         log.info("Inside if", []);
         tokenId = BigInt.fromI64(idArray[i]);
         tokenName = tokenNameArray[i];
-        platform = platformArray[i];
         break;
       }
     }
