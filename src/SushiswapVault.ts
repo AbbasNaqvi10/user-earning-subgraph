@@ -4,10 +4,8 @@ import {
     Deposit as DepositEvent,
     Withdraw as WithdrawEvent,
     SushiswapVault
-  } from "../generated/Weth_Usdt/SushiswapVault";
-  
+  } from "../generated/Weth_Usdc/SushiswapVault";
   import { SushiLp } from "../generated/SushiLp/SushiLp";
-  
   import {
     Approval,
     Transfer,

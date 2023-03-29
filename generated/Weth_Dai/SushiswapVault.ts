@@ -122,9 +122,9 @@ export class Withdraw__Params {
   }
 }
 
-export class Weth_Dai extends ethereum.SmartContract {
-  static bind(address: Address): Weth_Dai {
-    return new Weth_Dai("Weth_Dai", address);
+export class SushiswapVault extends ethereum.SmartContract {
+  static bind(address: Address): SushiswapVault {
+    return new SushiswapVault("SushiswapVault", address);
   }
 
   allowance(owner: Address, spender: Address): BigInt {

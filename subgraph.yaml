@@ -7,7 +7,7 @@ dataSources:
     network: arbitrum-one
     source:
       address: "0x46910A4AbA500b71F213150A0E99201Fd5c8FCec"
-      abi: Weth_Usdc
+      abi: SushiswapVault
       startBlock: 68319838
     mapping:
       kind: ethereum/events
@@ -16,9 +16,9 @@ dataSources:
       entities:
         - Approval
         - Transfer
-      abis:
-        - name: Weth_Usdc
-          file: ./abis/Weth_Usdc.json
+      abis:       
+        - name: SushiswapVault
+          file: ./abis/SushiswapVault.json
         - name: SushiLp
           file: ./abis/SushiLp.json
       eventHandlers:
@@ -30,13 +30,13 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/Weth_Usdc.ts
+      file: ./src/SushiswapVault.ts
   - kind: ethereum
     name: Weth_Usdt
     network: arbitrum-one
     source:
       address: "0xf8bDcf1Cf4134b2864cdbE685A8128F90ED0E16e"
-      abi: Weth_Usdt
+      abi: SushiswapVault
       startBlock: 69463891
     mapping:
       kind: ethereum/events
@@ -46,8 +46,8 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Weth_Usdt
-          file: ./abis/Weth_Usdt.json
+        - name: SushiswapVault
+          file: ./abis/SushiswapVault.json
         - name: SushiLp
           file: ./abis/SushiLp.json
       eventHandlers:
@@ -59,13 +59,13 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/Weth_Usdt.ts
+      file: ./src/SushiswapVault.ts
   - kind: ethereum
     name: Weth_Wbtc_SushiSwap
     network: arbitrum-one
     source:
       address: "0xdf9d86bC4765a9C64e85323A9408dbee0115d22E"
-      abi: Weth_Wbtc_SushiSwap
+      abi: SushiswapVault
       startBlock: 69465791
     mapping:
       kind: ethereum/events
@@ -75,8 +75,8 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Weth_Wbtc_SushiSwap
-          file: ./abis/Weth_Wbtc_SushiSwap.json
+        - name: SushiswapVault
+          file: ./abis/SushiswapVault.json
         - name: SushiLp
           file: ./abis/SushiLp.json
       eventHandlers:
@@ -88,13 +88,13 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/Weth_Wbtc_SushiSwap.ts
+      file: ./src/SushiswapVault.ts
   - kind: ethereum
     name: Weth_Magic
     network: arbitrum-one
     source:
       address: "0x3F9012f9bF3172c26B1B7246B8bc62148842B013"
-      abi: Weth_Magic
+      abi: SushiswapVault
       startBlock: 69467181
     mapping:
       kind: ethereum/events
@@ -104,8 +104,8 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Weth_Magic
-          file: ./abis/Weth_Magic.json
+        - name: SushiswapVault
+          file: ./abis/SushiswapVault.json
         - name: SushiLp
           file: ./abis/SushiLp.json
       eventHandlers:
@@ -117,13 +117,13 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/Weth_Magic.ts
+      file: ./src/SushiswapVault.ts
   - kind: ethereum
     name: Weth_Dai
     network: arbitrum-one
     source:
       address: "0xb58004E106409B00b854aBBF8CCB8618673d9346"
-      abi: Weth_Dai
+      abi: SushiswapVault
       startBlock: 69554908
     mapping:
       kind: ethereum/events
@@ -133,8 +133,8 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Weth_Dai
-          file: ./abis/Weth_Dai.json
+        - name: SushiswapVault
+          file: ./abis/SushiswapVault.json
         - name: SushiLp
           file: ./abis/SushiLp.json
       eventHandlers:
@@ -146,13 +146,13 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/Weth_Dai.ts
+      file: ./src/SushiswapVault.ts
   - kind: ethereum
     name: Weth_Pls
     network: arbitrum-one
     source:
       address: "0xeb952db71c594299cEEe7c03C3AA26FE0fDBC8eb"
-      abi: Weth_Pls
+      abi: SushiswapVault
       startBlock: 69616972
     mapping:
       kind: ethereum/events
@@ -162,8 +162,8 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Weth_Pls
-          file: ./abis/Weth_Pls.json
+        - name: SushiswapVault
+          file: ./abis/SushiswapVault.json
         - name: SushiLp
           file: ./abis/SushiLp.json
       eventHandlers:
@@ -175,7 +175,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/Weth_Pls.ts
+      file: ./src/SushiswapVault.ts
   - kind: ethereum
     name: Weth_Dpx
     network: arbitrum-one
@@ -421,3 +421,466 @@ dataSources:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
       file: ./src/index.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ==========================================================================================================================
+
+  # - kind: ethereum
+  #   name: Weth_Usdc
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0x46910A4AbA500b71F213150A0E99201Fd5c8FCec"
+  #     abi: Weth_Usdc
+  #     startBlock: 68319838
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Weth_Usdc
+  #         file: ./abis/Weth_Usdc.json
+  #       - name: SushiLp
+  #         file: ./abis/SushiLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/Weth_Usdc.ts
+  # - kind: ethereum
+  #   name: Weth_Usdt
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0xf8bDcf1Cf4134b2864cdbE685A8128F90ED0E16e"
+  #     abi: Weth_Usdt
+  #     startBlock: 69463891
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Weth_Usdt
+  #         file: ./abis/Weth_Usdt.json
+  #       - name: SushiLp
+  #         file: ./abis/SushiLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/Weth_Usdt.ts
+  # - kind: ethereum
+  #   name: Weth_Wbtc_SushiSwap
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0xdf9d86bC4765a9C64e85323A9408dbee0115d22E"
+  #     abi: Weth_Wbtc_SushiSwap
+  #     startBlock: 69465791
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Weth_Wbtc_SushiSwap
+  #         file: ./abis/Weth_Wbtc_SushiSwap.json
+  #       - name: SushiLp
+  #         file: ./abis/SushiLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/Weth_Wbtc_SushiSwap.ts
+  # - kind: ethereum
+  #   name: Weth_Magic
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0x3F9012f9bF3172c26B1B7246B8bc62148842B013"
+  #     abi: Weth_Magic
+  #     startBlock: 69467181
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Weth_Magic
+  #         file: ./abis/Weth_Magic.json
+  #       - name: SushiLp
+  #         file: ./abis/SushiLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/Weth_Magic.ts
+  # - kind: ethereum
+  #   name: Weth_Dai
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0xb58004E106409B00b854aBBF8CCB8618673d9346"
+  #     abi: Weth_Dai
+  #     startBlock: 69554908
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Weth_Dai
+  #         file: ./abis/Weth_Dai.json
+  #       - name: SushiLp
+  #         file: ./abis/SushiLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/Weth_Dai.ts
+  # - kind: ethereum
+  #   name: Weth_Pls
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0xeb952db71c594299cEEe7c03C3AA26FE0fDBC8eb"
+  #     abi: Weth_Pls
+  #     startBlock: 69616972
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Weth_Pls
+  #         file: ./abis/Weth_Pls.json
+  #       - name: SushiLp
+  #         file: ./abis/SushiLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/Weth_Pls.ts
+  # - kind: ethereum
+  #   name: Weth_Dpx
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0x3C0c76ceb491Cb0Bacb31F8e7dc6407A25FD87C0"
+  #     abi: Weth_Dpx
+  #     startBlock: 69871050
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Weth_Dpx
+  #         file: ./abis/Weth_Dpx.json
+  #       - name: SushiLp
+  #         file: ./abis/SushiLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/index.ts
+  # - kind: ethereum
+  #   name: Weth_Rdpx
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0x286d24B99b5CB6fE081f0e6Bd44EcbfCC1171A56"
+  #     abi: Weth_Rdpx
+  #     startBlock: 69871082
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Weth_Rdpx
+  #         file: ./abis/Weth_Rdpx.json
+  #       - name: SushiLp
+  #         file: ./abis/SushiLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/index.ts
+  # - kind: ethereum
+  #   name: Weth_Sushi
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0x8f2CC9FC5ecf3D30aC83c96189cdd6EC2810E2f8"
+  #     abi: Weth_Sushi
+  #     startBlock: 70149527
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Weth_Sushi
+  #         file: ./abis/Weth_Sushi.json
+  #       - name: SushiLp
+  #         file: ./abis/SushiLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/index.ts
+  # - kind: ethereum
+  #   name: Hop_Weth
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0xfd3573bebDc8bF323c65Edf2408Fd9a8412a8694"
+  #     abi: Hop_Weth
+  #     startBlock: 70539973
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Hop_Weth
+  #         file: ./abis/Hop_Weth.json
+  #       - name: HopLp
+  #         file: ./abis/HopLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/index.ts
+  # - kind: ethereum
+  #   name: Hop_Usdc
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0x1dda3B8A728a62a30f79d1E2a10e3d6B85ef4C5d"
+  #     abi: Hop_Usdc
+  #     startBlock: 70540034
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Hop_Usdc
+  #         file: ./abis/Hop_Usdc.json
+  #       - name: HopLp
+  #         file: ./abis/HopLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/index.ts
+  # - kind: ethereum
+  #   name: Hop_Usdt
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0x5cc3543656EfA30144965C6c538F4d8379F83138"
+  #     abi: Hop_Usdt
+  #     startBlock: 70540076
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Hop_Usdt
+  #         file: ./abis/Hop_Usdt.json
+  #       - name: HopLp
+  #         file: ./abis/HopLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/index.ts
+  # - kind: ethereum
+  #   name: Hop_Dai
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0x8ca3f11485Bd85Dd0E952C6b21981DEe8CD1E901"
+  #     abi: Hop_Dai
+  #     startBlock: 70860066
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: Hop_Dai
+  #         file: ./abis/Hop_Dai.json
+  #       - name: HopLp
+  #         file: ./abis/HopLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #       - event: Deposit(indexed address,uint256,uint256,uint256)
+  #         handler: handleDeposit
+  #       - event: Withdraw(indexed address,uint256,uint256,uint256)
+  #         handler: handleWithdraw
+  #     file: ./src/index.ts
+  # - kind: ethereum
+  #   name: SushiLp
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0x692a0B300366D1042679397e40f3d2cb4b8F7D30"
+  #     abi: SushiLp
+  #     startBlock: 68319838
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: SushiLp
+  #         file: ./abis/SushiLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #     file: ./src/index.ts
+  # - kind: ethereum
+  #   name: HopLp
+  #   network: arbitrum-one
+  #   source:
+  #     address: "0x905dfCD5649217c42684f23958568e533C711Aa3"
+  #     abi: HopLp
+  #     startBlock: 73140242
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Approval
+  #       - Transfer
+  #     abis:
+  #       - name: HopLp
+  #         file: ./abis/HopLp.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #     file: ./src/index.ts
