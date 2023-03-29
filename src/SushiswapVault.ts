@@ -3,9 +3,10 @@ import {
     Transfer as TransferEvent,
     Deposit as DepositEvent,
     Withdraw as WithdrawEvent,
-    SushiswapVault
+    SushiswapVault,
   } from "../generated/Weth_Usdc/SushiswapVault";
-  import { SushiLp } from "../generated/SushiLp/SushiLp";
+  // import { SushiLp } from "../generated/SushiLp/SushiLp";
+  import { SushiLp } from "../generated/Weth_Usdc/SushiLp";
   import {
     Approval,
     Transfer,
@@ -79,12 +80,9 @@ import {
     let platform = "SushiSwap";
     let vaultAddress = event.address;
     let userId = event.params._from;
-    
-  
+
     for (let i = 0; i < vaultArray.length; i++) {
-      log.info("Inside for loop", []);
       if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {
-        log.info("Inside if", []);
         tokenId = BigInt.fromI64(idArray[i]);
         tokenName = tokenNameArray[i];
         break;
@@ -205,6 +203,14 @@ import {
     let platform = "SushiSwap";
     let vaultAddress = event.address;
     let userId = event.params._from;
+    
+    for (let i = 0; i < vaultArray.length; i++) {
+      if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {
+        tokenId = BigInt.fromI64(idArray[i]);
+        tokenName = tokenNameArray[i];
+        break;
+      }
+    }
     let pairContract = SushiLp.bind(contract.token());
     let token0 = pairContract.token0();
     let token1 = pairContract.token1();
@@ -215,17 +221,6 @@ import {
     let withdraw = new Withdraw(
       event.transaction.hash.concatI32(event.logIndex.toI32())
     );
-  
-    for (let i = 0; i < vaultArray.length; i++) {
-      log.info("Inside for loop", []);
-      if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {
-        log.info("Inside if", []);
-        tokenId = BigInt.fromI64(idArray[i]);
-        tokenName = tokenNameArray[i];
-        break;
-      }
-    }
-  
     let user = User.load(userId);
   
     if (!user) {

@@ -3,10 +3,11 @@ import {
     Transfer as TransferEvent,
     Deposit as DepositEvent,
     Withdraw as WithdrawEvent,
-    SushiswapVault
-  } from "../generated/Weth_Usdt/SushiswapVault";
+    HopVault
+} from "../generated/Hop_Eth/HopVault"
   
-  import { SushiLp } from "../generated/SushiLp/SushiLp";
+  import { HopLp } from "../generated/Hop_Eth/HopLp";
+  import { HopSwap } from "../generated/Hop_Eth/HopSwap";
   
   import {
     Approval,
@@ -19,30 +20,18 @@ import {
   } from "../generated/schema";
   import { Address, BigInt, log } from "@graphprotocol/graph-ts";
   
-  let idArray = [10, 8, 1, 2, 3, 4];
+  let idArray = [19, 18, 17, 16];
   let tokenNameArray = [
-    "Weth_Magic",
-    "Weth_Pls",
-    "Weth_Dai",
-    "Weth_Usdc",
-    "Weth_Usdt",
-    "Weth_Wbtc_SushiSwap",
-  ];
-  let platformArray = [
-    "SushiSwap",
-    "SushiSwap",
-    "SushiSwap",
-    "SushiSwap",
-    "SushiSwap",
-    "SushiSwap",
+    "Hop_Dai",
+    "Hop_Usdt",
+    "Hop_Usdc",
+    "Hop_Eth",
   ];
   let vaultArray: Array<string> = [
-    "0x3F9012f9bF3172c26B1B7246B8bc62148842B013",
-    "0xeb952db71c594299cEEe7c03C3AA26FE0fDBC8eb",
-    "0xb58004E106409B00b854aBBF8CCB8618673d9346",
-    "0x46910A4AbA500b71F213150A0E99201Fd5c8FCec",
-    "0xf8bDcf1Cf4134b2864cdbE685A8128F90ED0E16e",
-    "0xdf9d86bC4765a9C64e85323A9408dbee0115d22E",
+    "0x8ca3f11485Bd85Dd0E952C6b21981DEe8CD1E901",
+    "0xCe3B19D820CB8B9ae370E423B0a329c4314335fE",
+    "0x1dda3B8A728a62a30f79d1E2a10e3d6B85ef4C5d",
+    "0xfd3573bebDc8bF323c65Edf2408Fd9a8412a8694",
   ];
   
   export function handleApproval(event: ApprovalEvent): void {
@@ -77,32 +66,27 @@ import {
   
   export function handleDeposit(event: DepositEvent): void {
     let zero = BigInt.fromI64(0);
-    let contract = SushiswapVault.bind(event.address);
+    let contract = HopVault.bind(event.address);
     let tokenId = zero;
-    let tokenName = "Weth_Magic";
-    let platform = "SwapFish";
+    let tokenName = "Hop_Dai";
+    let platform = "Hop";
     let vaultAddress = event.address;
     let userId = event.params._from;
     
   
     for (let i = 0; i < vaultArray.length; i++) {
-      log.info("Inside for loop", []);
       if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {
-        log.info("Inside if", []);
         tokenId = BigInt.fromI64(idArray[i]);
         tokenName = tokenNameArray[i];
-        platform = platformArray[i];
-        // // @ts-ignore
-        // contract = Classes[i].bind(event.address);
         break;
       }
     }
-    let pairContract = SushiLp.bind(contract.token());
-    let token0 = pairContract.token0();
-    let token1 = pairContract.token1();
-    let reserves = pairContract.getReserves();
-    let reserve0 = reserves.get_reserve0();
-    let reserve1 = reserves.get_reserve1();
+    let pairContract = HopLp.bind(contract.token());
+    let swap = HopSwap.bind(pairContract.swap());
+    let token0 = swap.getToken(0);
+    let token1 = swap.getToken(1);
+    let reserve0 = swap.getTokenBalance(0);
+    let reserve1 = swap.getTokenBalance(1);
     let totalSupply = pairContract.totalSupply();
     let deposit = new Deposit(
       event.transaction.hash.concatI32(event.logIndex.toI32())
@@ -206,34 +190,33 @@ import {
   
   export function handleWithdraw(event: WithdrawEvent): void {
     let zero = BigInt.fromI64(0);
-    let contract = SushiswapVault.bind(event.address);
+    let contract = HopVault.bind(event.address);
     let tokenId = zero;
-    let tokenName = "Weth_Magic";
-    let platform = "SwapFish";
+    let tokenName = "Hop_Dai";
+    let platform = "Hop";
     let vaultAddress = event.address;
     let userId = event.params._from;
-    let pairContract = SushiLp.bind(contract.token());
-    let token0 = pairContract.token0();
-    let token1 = pairContract.token1();
-    let reserves = pairContract.getReserves();
-    let reserve0 = reserves.get_reserve0();
-    let reserve1 = reserves.get_reserve1();
-    let totalSupply = pairContract.totalSupply();
-    let withdraw = new Withdraw(
-      event.transaction.hash.concatI32(event.logIndex.toI32())
-    );
+    
   
     for (let i = 0; i < vaultArray.length; i++) {
-      log.info("Inside for loop", []);
       if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {
-        log.info("Inside if", []);
         tokenId = BigInt.fromI64(idArray[i]);
         tokenName = tokenNameArray[i];
-        platform = platformArray[i];
         break;
       }
     }
-  
+    let pairContract = HopLp.bind(contract.token());
+    let swap = HopSwap.bind(pairContract.swap());
+    let token0 = swap.getToken(0);
+    let token1 = swap.getToken(1);
+    let reserve0 = swap.getTokenBalance(0);
+    let reserve1 = swap.getTokenBalance(1);
+    let totalSupply = pairContract.totalSupply();
+    
+    let withdraw = new Withdraw(
+      event.transaction.hash.concatI32(event.logIndex.toI32())
+    );
+
     let user = User.load(userId);
   
     if (!user) {

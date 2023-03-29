@@ -181,7 +181,7 @@ dataSources:
     network: arbitrum-one
     source:
       address: "0x3C0c76ceb491Cb0Bacb31F8e7dc6407A25FD87C0"
-      abi: Weth_Dpx
+      abi: SushiswapVault
       startBlock: 69871050
     mapping:
       kind: ethereum/events
@@ -191,8 +191,8 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Weth_Dpx
-          file: Weth_Dpx\abis\Weth_Dpx.json
+        - name: SushiswapVault
+          file: Weth_Dpx\abis\SushiswapVault.json
         - name: SushiLp
           file: Weth_Dpx\abis\SushiLp.json
       eventHandlers:
@@ -204,13 +204,13 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Dpx\Weth_Dpx.wasm
+      file: Weth_Usdc\Weth_Usdc.wasm
   - kind: ethereum
     name: Weth_Rdpx
     network: arbitrum-one
     source:
       address: "0x286d24B99b5CB6fE081f0e6Bd44EcbfCC1171A56"
-      abi: Weth_Rdpx
+      abi: SushiswapVault
       startBlock: 69871082
     mapping:
       kind: ethereum/events
@@ -220,8 +220,8 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Weth_Rdpx
-          file: Weth_Rdpx\abis\Weth_Rdpx.json
+        - name: SushiswapVault
+          file: Weth_Rdpx\abis\SushiswapVault.json
         - name: SushiLp
           file: Weth_Rdpx\abis\SushiLp.json
       eventHandlers:
@@ -233,13 +233,13 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Dpx\Weth_Dpx.wasm
+      file: Weth_Usdc\Weth_Usdc.wasm
   - kind: ethereum
     name: Weth_Sushi
     network: arbitrum-one
     source:
       address: "0x8f2CC9FC5ecf3D30aC83c96189cdd6EC2810E2f8"
-      abi: Weth_Sushi
+      abi: SushiswapVault
       startBlock: 70149527
     mapping:
       kind: ethereum/events
@@ -249,8 +249,8 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Weth_Sushi
-          file: Weth_Sushi\abis\Weth_Sushi.json
+        - name: SushiswapVault
+          file: Weth_Sushi\abis\SushiswapVault.json
         - name: SushiLp
           file: Weth_Sushi\abis\SushiLp.json
       eventHandlers:
@@ -262,13 +262,13 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Dpx\Weth_Dpx.wasm
+      file: Weth_Usdc\Weth_Usdc.wasm
   - kind: ethereum
-    name: Hop_Weth
+    name: Hop_Eth
     network: arbitrum-one
     source:
       address: "0xfd3573bebDc8bF323c65Edf2408Fd9a8412a8694"
-      abi: Hop_Weth
+      abi: HopVault
       startBlock: 70539973
     mapping:
       kind: ethereum/events
@@ -278,10 +278,12 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Hop_Weth
-          file: Hop_Weth\abis\Hop_Weth.json
+        - name: HopVault
+          file: Hop_Eth\abis\HopVault.json
         - name: HopLp
-          file: Hop_Weth\abis\HopLp.json
+          file: Hop_Eth\abis\HopLp.json
+        - name: HopSwap
+          file: Hop_Eth\abis\HopSwap.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -291,13 +293,13 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Dpx\Weth_Dpx.wasm
+      file: Hop_Eth\Hop_Eth.wasm
   - kind: ethereum
     name: Hop_Usdc
     network: arbitrum-one
     source:
       address: "0x1dda3B8A728a62a30f79d1E2a10e3d6B85ef4C5d"
-      abi: Hop_Usdc
+      abi: HopVault
       startBlock: 70540034
     mapping:
       kind: ethereum/events
@@ -307,10 +309,12 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Hop_Usdc
-          file: Hop_Usdc\abis\Hop_Usdc.json
+        - name: HopVault
+          file: Hop_Usdc\abis\HopVault.json
         - name: HopLp
           file: Hop_Usdc\abis\HopLp.json
+        - name: HopSwap
+          file: Hop_Usdc\abis\HopSwap.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -320,13 +324,13 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Dpx\Weth_Dpx.wasm
+      file: Hop_Eth\Hop_Eth.wasm
   - kind: ethereum
     name: Hop_Usdt
     network: arbitrum-one
     source:
       address: "0x5cc3543656EfA30144965C6c538F4d8379F83138"
-      abi: Hop_Usdt
+      abi: HopVault
       startBlock: 70540076
     mapping:
       kind: ethereum/events
@@ -336,10 +340,12 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Hop_Usdt
-          file: Hop_Usdt\abis\Hop_Usdt.json
+        - name: HopVault
+          file: Hop_Usdt\abis\HopVault.json
         - name: HopLp
           file: Hop_Usdt\abis\HopLp.json
+        - name: HopSwap
+          file: Hop_Usdt\abis\HopSwap.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -349,13 +355,13 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Dpx\Weth_Dpx.wasm
+      file: Hop_Eth\Hop_Eth.wasm
   - kind: ethereum
     name: Hop_Dai
     network: arbitrum-one
     source:
       address: "0x8ca3f11485Bd85Dd0E952C6b21981DEe8CD1E901"
-      abi: Hop_Dai
+      abi: HopVault
       startBlock: 70860066
     mapping:
       kind: ethereum/events
@@ -365,10 +371,12 @@ dataSources:
         - Approval
         - Transfer
       abis:
-        - name: Hop_Dai
-          file: Hop_Dai\abis\Hop_Dai.json
+        - name: HopVault
+          file: Hop_Dai\abis\HopVault.json
         - name: HopLp
           file: Hop_Dai\abis\HopLp.json
+        - name: HopSwap
+          file: Hop_Dai\abis\HopSwap.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -378,46 +386,4 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: Weth_Dpx\Weth_Dpx.wasm
-  - kind: ethereum
-    name: SushiLp
-    network: arbitrum-one
-    source:
-      address: "0x692a0B300366D1042679397e40f3d2cb4b8F7D30"
-      abi: SushiLp
-      startBlock: 68319838
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - Approval
-        - Transfer
-      abis:
-        - name: SushiLp
-          file: SushiLp\abis\SushiLp.json
-      eventHandlers:
-        - event: Approval(indexed address,indexed address,uint256)
-          handler: handleApproval
-      file: Weth_Dpx\Weth_Dpx.wasm
-  - kind: ethereum
-    name: HopLp
-    network: arbitrum-one
-    source:
-      address: "0x905dfCD5649217c42684f23958568e533C711Aa3"
-      abi: HopLp
-      startBlock: 73140242
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - Approval
-        - Transfer
-      abis:
-        - name: HopLp
-          file: HopLp\abis\HopLp.json
-      eventHandlers:
-        - event: Approval(indexed address,indexed address,uint256)
-          handler: handleApproval
-      file: Weth_Dpx\Weth_Dpx.wasm
+      file: Hop_Eth\Hop_Eth.wasm
